@@ -73,7 +73,7 @@ export default function SearchScreen({ navigation }) {
                       }
                     >
                       <Text style={styles.searchResultText}>
-                        <Flag code={city.country} size={32} /> {city.name}
+                        <Flag code={city.country} size={32} />{city.name}
                         {city.state ? ', ' + city.state : null}
                       </Text>
                       {savedCityList.indexOf(JSON.stringify(city)) == -1 ? (
@@ -134,7 +134,7 @@ export default function SearchScreen({ navigation }) {
                         }
                       >
                         <Text style={styles.searchResultText}>
-                          <Flag code={city.country} size={32} /> {city.name}
+                          <Flag code={city.country} size={32} />{city.name}
                           {city.state ? ', ' + city.state : null}
                         </Text>
                         {savedCityList.indexOf(JSON.stringify(city)) == -1 ? (
