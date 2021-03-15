@@ -2,7 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import * as Location from 'expo-location';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const AppContext = React.createContext();
+const AppContext = React.createContext('test this');
+
 export function useApp() {
   return useContext(AppContext);
 }
@@ -25,16 +26,20 @@ export default function AppProvider({ children }) {
   // the first time they start the app
   useEffect(() => {
     (async () => {
-      let { status } = await Location.requestPermissionsAsync();
-      if (status !== 'granted') {
-        alert('Permission to access location was denied');
-        return;
+      try {
+        let { status } = await Location.requestPermissionsAsync();
+        if (status !== 'granted') {
+          alert('Permission to access location was denied');
+          return;
+        }
+        let currentLocation = await Location.getCurrentPositionAsync({
+          accuracy: 6,
+        });
+        setLatitude(currentLocation.coords.latitude);
+        setLongitude(currentLocation.coords.longitude);
+      } catch (err) {
+        alert(err);
       }
-      let currentLocation = await Location.getCurrentPositionAsync({
-        enableHighAccuracy: true,
-      });
-      setLatitude(currentLocation.coords.latitude);
-      setLongitude(currentLocation.coords.longitude);
     })();
 
     // Update state with saved cities from local storage

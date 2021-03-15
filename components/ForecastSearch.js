@@ -32,6 +32,7 @@ export default function ForecastSearch(props) {
       .then((response) => response.json())
       .then((data) => {
         setOnecallData(data);
+        console.log(onecallData);
         setIcon(data.hourly[0].weather[0].icon);
         setIsLoaded(true);
       });

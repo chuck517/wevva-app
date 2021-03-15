@@ -25,7 +25,7 @@ export default function SearchScreen({ navigation }) {
     setSearchString(textValue);
   };
   const debounceSearch = useCallback(
-    AwesomeDebouncePromise((searchString) => fetchCities(searchString), 1000),
+    AwesomeDebouncePromise((searchString) => {fetchCities(searchString), 1000}),
     []
   );
   const fetchCities = (string) => {
